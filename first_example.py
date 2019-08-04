@@ -4,7 +4,8 @@ graph = {
     "c": ["a", "b", "d", "e"],
     "d": ["c"],
     "e": ["c", "b"],
-    "f": []
+    "f": [],
+    "g": []
 }
 
 
@@ -17,7 +18,7 @@ def generate_edges(graph):
     return edges
 
 
-print(generate_edges(graph))
+print('Graph edges:', generate_edges(graph))
 
 
 def find_isolated_nodes(graph):
@@ -25,8 +26,8 @@ def find_isolated_nodes(graph):
     isolated = []
     for node in graph:
         if not graph[node]:
-            isolated += node
+            isolated.append(node)
     return isolated
 
 
-print(find_isolated_nodes(graph))
+print('Isolated noes:', find_isolated_nodes(graph))
