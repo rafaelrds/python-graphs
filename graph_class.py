@@ -33,8 +33,8 @@ class Graph(object):
             self.__graph_dict[vertex] = []
 
     def add_edge(self, edge):
-        """ assumes that edge is of type set, tuple or list;
-            between two vertices can be multiple edges!
+        """ assumes that an edge is of type {set, tuple or list};
+            between two vertices there can be multiple edges!
         """
         edge = set(edge)
         (vertex1, vertex2) = tuple(edge)
@@ -85,14 +85,16 @@ if __name__ == "__main__":
     print("Edges of graph:")
     print(graph.edges())
 
-    print("Add vertex:")
-    graph.add_vertex("z")
+    vertex = "z"
+    print("Add vertex: {}".format(vertex))
+    graph.add_vertex(vertex)
 
     print("Vertices of graph:")
     print(graph.vertices())
 
-    print("Add an edge:")
-    graph.add_edge({"a", "z"})
+    edge = {"a", "z"}
+    print("Add an edge: {}".format(edge))
+    graph.add_edge(edge)
 
     print("Vertices of graph:")
     print(graph.vertices())
