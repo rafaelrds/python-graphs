@@ -105,8 +105,8 @@ class Graph(object):
         for vertex in graph[start_vertex]:
             if vertex not in path:
                 extended_paths = self.find_all_paths(vertex,
-                                                        end_vertex,
-                                                        path)
+                                                     end_vertex,
+                                                     path)
                 for p in extended_paths:
                     paths.append(p)
         return paths
