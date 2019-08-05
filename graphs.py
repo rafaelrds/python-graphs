@@ -68,7 +68,7 @@ class Graph(object):
     def find_path(self, start_vertex, end_vertex, path=None):
         """ find a path from start_vertex to end_vertex
             in graph """
-        # If it is running for the first time, create an empty path
+        # If running for the first time, create an empty path list
         if path is None:
             path = []
         graph = self.__graph_dict
@@ -88,6 +88,8 @@ class Graph(object):
             # Our path dont allow the same vertex twice
             if vertex not in path:
                 extended_path = self.find_path(vertex, end_vertex, path)
+
+                # If something Truty returns from find_path, return it
                 if extended_path:
                     return extended_path
         return None
