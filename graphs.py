@@ -65,6 +65,33 @@ class Graph(object):
             res += str(edge) + " "
         return res
 
+    def find_path(self, start_vertex, end_vertex, path=None):
+        """ find a path from start_vertex to end_vertex
+            in graph """
+        # If it is running for the first time, create an empty path
+        if path is None:
+            path = []
+        graph = self.__graph_dict
+        # Concat path (list) with current vertex (start)
+        path = path + [start_vertex]
+
+        # If start_vertex = end_vertex the path was found
+        if start_vertex == end_vertex:
+            return path
+
+        # If start vertex do not exist, the path cannot be found
+        if start_vertex not in graph:
+            return None
+
+        # Check for neighbours of starting vertex
+        for vertex in graph[start_vertex]:
+            # Our path dont allow the same vertex twice
+            if vertex not in path:
+                extended_path = self.find_path(vertex, end_vertex, path)
+                if extended_path:
+                    return extended_path
+        return None
+
 
 if __name__ == "__main__":
 
