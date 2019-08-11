@@ -5,27 +5,38 @@ g = {"a": ["d"],
      "c": ["b", "c", "d", "e"],
      "d": ["a", "c"],
      "e": ["c"],
-     "f": []
+     "f": ["g"],
+     "g": []
      }
 
 
 graph = Graph(g)
 
-print("Vertices of graph:")
-print(graph.vertices())
+# print("Vertices of graph:")
+# print(graph.vertices())
 
-print("Edges of graph:")
-print(graph.edges())
+# print("Edges of graph:")
+# print(graph.edges())
 
 
-print('The path from vertex "a" to vertex "b":')
+# print('The path from vertex "a" to vertex "b":')
 path = graph.find_path("a", "b")
-print(path)
+assert path == ['a', 'd', 'c', 'b']
+assert graph.path_exists("a", "b") == True
+# print(path)
 
-print('The path from vertex "a" to vertex "f":')
+# print('The path from vertex "a" to vertex "f":')
 path = graph.find_path("a", "f")
-print(path)
+path == None
+assert graph.path_exists("a", "f") == False
+# print(path)
 
-print('The path from vertex "c" to vertex "c":')
+# print('The path from vertex "c" to vertex "c":')
 path = graph.find_path("c", "c")
-print(path)
+assert path == ["c"]
+assert graph.path_exists("c", "c") == True
+# print(path)
+
+assert graph.path_exists("f", "g") == True
+assert graph.path_exists("g", "f") == False
+assert graph.path_exists("f", "a") == False

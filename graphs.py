@@ -65,6 +65,26 @@ class Graph(object):
             res += str(edge) + " "
         return res
 
+    def path_exists(self, start_vertex, end_vertex, visited=None):
+        graph = self.__graph_dict
+
+        if visited is None:
+            visited = []
+        
+        visited.append(start_vertex)
+        
+        if start_vertex == end_vertex:
+            return True
+
+        if start_vertex not in graph:
+            return False
+
+        for vertex in graph[start_vertex]:
+            if vertex not in visited:
+                return self.path_exists(vertex, end_vertex, visited=visited)
+        return False
+
+
     def find_path(self, start_vertex, end_vertex, path=None):
         """ find a path from start_vertex to end_vertex
             in graph """
@@ -112,6 +132,29 @@ class Graph(object):
                 for p in extended_paths:
                     paths.append(p)
         return paths
+
+    def is_connected(self):
+        s = self.vertices()[0]
+        
+        visitable_nodes = self._visitableNodes(s, visited=[])
+        total_vertices = self.vertices()
+        
+        return len(visitable_nodes) == len(total_vertices)
+    
+
+    def _visitableNodes(self, start_vertex, visited):
+        graph = self.__graph_dict
+        
+        if start_vertex in visited:
+            return visited
+
+        visited.append(start_vertex)
+        print (visited)
+        
+        for neighbour in graph[start_vertex]:
+            if neighbour not in visited:
+                self._visitableNodes(neighbour, visited)
+        return visited
 
 
 if __name__ == "__main__":
